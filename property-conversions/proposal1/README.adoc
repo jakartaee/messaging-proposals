@@ -1,0 +1,44 @@
+# Property Conversions
+
+The original JMS 2.1 proposed annotation-based API did not have support for converting Message Property strings into objects like URL, URI, Enums, etc.  Applications were limited to the existing Message Property types; the 8 primitive types and String.  To support annotated methods that make use of basic types we would need String-to-Java conversion rules similar to Jakarta REST and MicroProfile Config.
+
+Ideally an independent specification is created that is not specific to Jakarta Messaging and is used by Jakarta REST, Jakarta Messaging and the future Jakarta Config.
+
+An example annotated method that would be impossible without property converters:
+
+[source,java]
+----
+@TopicListener("BUILD.NOTIFICATIONS")
+public void processNotifications(@MessageProperty("buildId") final BuildId buildId,
+                                 @MessageProperty("date") final Date date,
+                                 @MessageProperty("projectUrl") final URL projectUrl,
+                                 @MessageProperty("buildUrl") final URI buildUrl,
+                                 @MessageProperty("buildStatus") final BuildStatus buildStatus,
+                                 final String message) {
+----
+
+## Proposed API Classes
+
+ - none
+
+## Assumptions
+
+## Advantages
+
+ - Applications may use
+
+## Limitations/Drawbacks
+
+## Open Questions
+
+ - Would such support be limited to Message Properties of type String or would we attempt to support the other Message Property types?
+
+ - What happens if an application references a message property that can't be converted?  For example "foo" is an int in the message and the application attempts to refer to "foo" as a URL?
+
+## Depends on Proposals
+
+ - annotation-based-api
+
+## Depends on Specifications
+
+ - Potential Jakarta Property Converters specification

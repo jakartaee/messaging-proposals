@@ -1,0 +1,50 @@
+# CDI Stereotypes for the Messaging API itself
+
+This proposal demonstrates what it would look like to take advantage of CDI Stereotypes in the Messaging API itself.  It could be possible to do this in the API only and not expose such capabilities to the end user.
+
+As an example, Jakarta REST has an API that implies stereotypes.
+
+[source,java]
+----
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@HttpMethod("GET")
+@Documented
+public @interface GET {
+}
+----
+
+It could be possible to at least go this far without fully exposing true CDI stereotype capabilities.  Implementations would be able to handle this level of annotation-reuse (stereotypes, meta-annotations) without any fancy logic.
+
+We could potentially start here and add user-exposed CDI Stereotypes (proposal 2) later.
+
+## Proposed API Classes
+
+ - link:src/main/java/jakarta/jms/headers/CorrelationID.java[jakarta.jms.headers.CorrelationID]
+ - link:src/main/java/jakarta/jms/headers/DeliveryMode.java[jakarta.jms.headers.DeliveryMode]
+ - link:src/main/java/jakarta/jms/headers/DeliveryTime.java[jakarta.jms.headers.DeliveryTime]
+ - link:src/main/java/jakarta/jms/headers/Destination.java[jakarta.jms.headers.Destination]
+ - link:src/main/java/jakarta/jms/headers/Expiration.java[jakarta.jms.headers.Expiration]
+ - link:src/main/java/jakarta/jms/headers/MessageID.java[jakarta.jms.headers.MessageID]
+ - link:src/main/java/jakarta/jms/headers/Priority.java[jakarta.jms.headers.Priority]
+ - link:src/main/java/jakarta/jms/headers/Redelivered.java[jakarta.jms.headers.Redelivered]
+ - link:src/main/java/jakarta/jms/headers/ReplyTo.java[jakarta.jms.headers.ReplyTo]
+ - link:src/main/java/jakarta/jms/headers/Timestamp.java[jakarta.jms.headers.Timestamp]
+ - link:src/main/java/jakarta/jms/headers/Type.java[jakarta.jms.headers.Type]
+
+## Assumptions
+
+## Advantages
+
+## Limitations/Drawbacks
+
+## Open Questions
+
+## Depends on Proposals
+
+ - annotation-based-api
+
+## Depends on Specifications
+
+ - Jakarta CDI
+

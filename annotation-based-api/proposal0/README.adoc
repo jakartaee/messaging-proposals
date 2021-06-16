@@ -1,0 +1,20 @@
+# JMS 2.1
+
+Contains the proposed new classes in the withdrawn JMS 2.1 JSR.  These went through several different states, this directory represents where things left off at the time the specification was withdrawn.  This proposal should not be considered as coming from any one individual, but the former JMS 2.1 Expert Group as a whole.
+
+## Proposed API Classes
+
+ - link:src/main/java/jakarta/jms/AutoAcknowledge.java[jakarta.jms.AutoAcknowledge]
+ - link:src/main/java/jakarta/jms/ClientId.java[jakarta.jms.ClientId]
+ - link:src/main/java/jakarta/jms/DupsOKAcknowledge.java[jakarta.jms.DupsOKAcknowledge]
+ - link:src/main/java/jakarta/jms/DurableSubscription.java[jakarta.jms.DurableSubscription]
+ - link:src/main/java/jakarta/jms/JMSMessageDrivenBean.java[jakarta.jms.JMSMessageDrivenBean]
+ - link:src/main/java/jakarta/jms/ListenerProperties.java[jakarta.jms.ListenerProperties]
+ - link:src/main/java/jakarta/jms/ListenerProperty.java[jakarta.jms.ListenerProperty]
+ - link:src/main/java/jakarta/jms/MessageHeader.java[jakarta.jms.MessageHeader]
+ - link:src/main/java/jakarta/jms/MessageProperty.java[jakarta.jms.MessageProperty]
+ - link:src/main/java/jakarta/jms/MessageSelector.java[jakarta.jms.MessageSelector]
+ - link:src/main/java/jakarta/jms/QueueListener.java[jakarta.jms.QueueListener]
+ - link:src/main/java/jakarta/jms/SubscriptionName.java[jakarta.jms.SubscriptionName]
+ - link:src/main/java/jakarta/jms/TopicListener.java[jakarta.jms.TopicListener]
+

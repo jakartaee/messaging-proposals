@@ -1,0 +1,60 @@
+# Messaging Client
+
+Inspired by the MicroProfile REST Client, this proposal would give applications the ability to define an interface that uses the Jakarta Messaging annotation-based API.  Those interfaces could then be passed to a client builder or factory of some kind to get an instance of the interface that can send messages.
+
+An example interface may look as follows:
+
+[source,java]
+----
+public interface NotificationsClient {
+
+    @TopicListener("BUILD.NOTIFICATIONS")
+    public void processNotifications(@MessageProperty("buildId") final String buildId,
+                                     @MessageProperty("projectUrl") final String projectUrl,
+                                     @MessageProperty("buildUrl") final String buildUrl,
+                                     @MessageProperty("buildStatus") final String buildStatus,
+                                     final String message);
+
+    @TopicListener("BUILD.NOTIFICATIONS")
+    public void processNotifications(@MessageProperty("buildId") final String buildId,
+                                     @MessageProperty("projectUrl") final URL projectUrl,
+                                     @MessageProperty("buildStatus") final String buildStatus);
+}
+----
+
+The client-building and invoking side may look as follows:
+
+[source,java]
+----
+final NotificationsClient notificationsClient = MessagingClientBuilder.newBuilder()
+        .connectionFactory(connectionFactory)
+        .build(NotificationsClient.class);
+
+    notificationsClient.processNotifications(
+            buildId,
+            project.getUrl(),
+            "SUCCESS"
+    );
+----
+
+## Proposed API Classes
+
+ - link:src/main/java/jakarta/jms/MessagingClientBuilder.java[jakarta.jms.MessagingClientBuilder]
+ 
+## Assumptions
+
+## Advantages
+
+## Limitations/Drawbacks
+
+## Open Questions
+
+## Depends on Proposals
+
+ - annotation-based-api
+ - jsonb-messages and/or jaxb-messages
+ - property-conversions
+
+## Depends on Specifications
+
+ - None

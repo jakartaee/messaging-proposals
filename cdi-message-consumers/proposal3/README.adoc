@@ -1,0 +1,42 @@
+# CDI Consumers via @MessageScoped
+
+Use of a custom CDI Scope, @MessageScoped, is used to facilitate CDI beans that can consume Jakarta Messages
+
+## Proposed API Classes
+
+ - link:src/main/java/jakarta/jms/MessageScoped.java[jakarta.jms.MessageScoped]
+ 
+## Assumptions
+
+ - Assumes the Messaging implementation has a CDI Extension that installs the custom scope.
+
+ - The scope in question is non-persistent like @RequestScoped and tied to the thread consuming the Jakarta Message.
+
+## Advantages
+
+ - Does not require the Messaging implementation to scan all the classes to look for classes or method with Jakarta Messaging API annotations.  The CDI container will automatically hook up `@MessageScoped` to the installed provider.  This will be significantly faster and less complicated.
+
+ - As `@MessageScoped` is a new scope type the instances could potentially be pooled.  This lines up very closely to the existing MDB lifecycle for many containers.
+
+ - Avoids potential complexity/confusion/conflict with `@RequestScoped` or `@ApplicationScoped` beans whose scopes are always valid even when no message is being processed.  Methods of these beans are therefore always exposed to the app and can used as plain methods.  With a custom scope that is only valid in the context of a Jakarta Message, referencing the `@MessageScoped` instance in an HTTP request for example would fail as one would expect.
+
+ - Lines up very cleanly with `@MessageDriven` which would make conversion from MDB to CDI very easy.
+
+## Limitations/Drawbacks
+
+ - A user would not be able reference the bean unless there is a valid Jakarta Message being consumed in the thread (intended).  The drawback of this is a user would not be able to create a single bean that consumes multiple message styles, say Jakarta Messaging and Jakarta REST on the same bean.
+
+ - Deviates from Jakarta REST perspective on message consuming and CDI integration, which does allow `@RequestScoped` and `@ApplicationScoped`
+
+## Open Questions
+
+ - Would there also be a valid `@RequestScoped` so that a `@MessageScoped` bean can reference plain/shared CDI code that is not specific to Jakarta Messaging and may be `@RequestScoped`?
+
+## Depends on Proposals
+
+ - annotation-based-api
+
+## Depends on Specifications
+
+ - Jakarta CDI
+
