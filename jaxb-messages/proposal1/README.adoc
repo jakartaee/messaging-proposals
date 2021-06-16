@@ -1,0 +1,34 @@
+# JAXB Message Body Reader/Writer
+
+Gives applications the ability to have TextMessage containing xml to be unmarshalled as a Java object that is then passed into the Jakarta Messaging annotated method.
+
+## Proposed API Classes
+
+ - none
+
+## Assumptions
+
+ - Assumes some form of mime type is added to the specification
+
+## Advantages
+
+ - Without some form of unmarshalling it would not be possible to have methods such as `@TopicListener public void consume(Project project)` that can consume TextMessages.  Applications would be limited to `@TopicListener public void consume(TextMessage message)`
+
+## Limitations/Drawbacks
+
+ - Limited to messages of type `TextMessage`.  Not applicable to other message types.
+
+## Open Questions
+
+ - How would we specify the mime type?  A separate proposal would be required, likely defining a new standard Message Header.
+
+ - Would we also want a MessageBodyReader and MessageBodyWriter API like Jakarta REST has?  Theoretically we could support JAXB marshalling as a built-in feature and still add a reader/writer concept in the future without conflict.
+
+## Depends on Proposals
+
+ - annotation-based-api
+
+## Depends on Specifications
+
+ - Jakarta XML Binding (JAXB)
+

@@ -1,0 +1,24 @@
+# CDI Stereotypes for Applications
+
+This proposal demonstrates what it would look like to take advantage of CDI Stereotypes in an application.  This would involve allowing users to define stereotypes of their own, use them in their code, and have the Messaging implementation resolve them.
+
+## Proposed API Classes
+
+ - none
+
+## Assumptions
+
+## Advantages
+
+## Limitations/Drawbacks
+
+## Open Questions
+
+## Depends on Proposals
+
+ - annotation-based-api
+
+## Depends on Specifications
+
+ - Jakarta CDI
+

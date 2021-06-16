@@ -1,0 +1,33 @@
+# Connector Listener Annotation
+
+The Java EE Connector Architecture 1.6 added a "no methods interface" option as a way to tell the MDB container which Connector should handle the MDB.  This is an annotation-based alternative.
+
+## Proposed API Classes
+
+ - link:src/main/java/jakarta/resource/spi/ConnectorDrivenBean.java[jakarta.resource.spi.ConnectorDrivenBean]
+ - link:src/main/java/jakarta/jms/MessageConsumer.java[jakarta.jms.MessageConsumer]
+
+## Assumptions
+
+ - TODO
+
+## Advantages
+
+ - TODO
+
+## Limitations/Drawbacks
+
+ - TODO
+
+## Open Questions
+
+ - TODO
+
+## Depends on Proposals
+
+ - TODO
+
+## Depends on Specifications
+
+ - TODO
+

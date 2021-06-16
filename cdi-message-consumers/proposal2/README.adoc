@@ -1,0 +1,30 @@
+# CDI ApplicationScoped
+
+Use of CDI ApplicationScoped beans could easily be supported by the Jakarta EE Connector Architecture.  These beans would be visible via the BeanManager without concerns of a scope that is not enabled.
+
+## Assumptions
+
+Assumes the Messaging implementation has a CDI Extension or some ability to scan all the CDI beans to look for Messaging API annotated methods.
+
+## Advantages
+
+ - Identical to Jakarta REST's support of @ApplicationScoped on HTTP Message consumers
+
+ - An application could consume both Jakarta REST and Jakarta Messaging messages on the same bean and methods
+
+## Limitations/Drawbacks
+
+Potential Thread safety issues.
+
+## Open Questions
+
+ - Would it be desirable to have something like EJBs `@Lock` annotation on CDI ApplicationScoped beans so the user can have container-managed thread safety?
+
+## Depends on Proposals
+
+ - annotation-based-api
+
+## Depends on Specifications
+
+ - Jakarta CDI
+
